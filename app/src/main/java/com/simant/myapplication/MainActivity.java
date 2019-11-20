@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
     String strAdult, strChild, strRoomNo;
     Integer totalAmount;
     Integer vatAmount, serviceAmount;
+
+    LinearLayout linearLayout;
 
     private String[] location= {"Balkot", "Baneshwor", "Kalanki", "Koteswor", "Kalimati", "Tikathali"};
     private String[] roomType = {"Classic - 1000", "Delux - 1500", "AC - 2500"};
@@ -55,6 +58,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // initilization
+        linearLayout = findViewById(R.id.recipt);
+        linearLayout.setVisibility(View.GONE);
+
         spinnerLocation = findViewById(R.id.spLocation);
         spinnerRoomType = findViewById(R.id.spRoomType);
 
@@ -142,6 +148,9 @@ public class MainActivity extends AppCompatActivity {
         buttonSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                linearLayout.setVisibility(View.VISIBLE);
+
                 textViewLocation.setText("The location is " + spinnerLocation.getSelectedItem().toString());
                 textViewRoomType.setText("The room type is " + spinnerRoomType.getSelectedItem().toString());
                 if (spinnerRoomType.getSelectedItem().toString() == "Classic - 1000") {
@@ -184,7 +193,6 @@ public class MainActivity extends AppCompatActivity {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-
 
             }
         });
